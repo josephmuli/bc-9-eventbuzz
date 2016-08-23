@@ -1,12 +1,20 @@
 from sqlalchemy import create_engine
-form sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker
 
 
 
 # create a connection to database ebuzz, echo relieves all logging
 engine = create_engine('sqlite://ebuzz.sqlite', echo = False)
 
+# create new session object for queries
+Session = sessionmaker(bind=engine)
+Session.configure(bind=engine)
+session = Session()
+
 Base = declarative_base()
+
+Base.metadata.create_all(engine)
 
 
 class Event(Base):
