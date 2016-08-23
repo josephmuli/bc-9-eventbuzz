@@ -4,14 +4,14 @@
 
 **Event Buzz** is a console application that facilitates a ticket booking service  
 **Event Buzz** allows a user to do the following:  
-	* Create a new event with a name, start date, end date and venue  
-	* Generate tickets for events and send an email update
-	* Invalidate a ticket 
-	* View an event's tickets  
-	* Delete an event  
-	* Edit a specific event's details  
-	* List out all events  
-	* Send email updates on an event's schedule  
+ * Create a new event with a name, start date, end date and venue  
+ * Generate tickets for events and send an email update
+ * Invalidate a ticket 
+ * View an event's tickets  
+ * Delete an event  
+ * Edit a specific event's details  
+ * List out all events  
+ * Send email updates on an event's schedule  
 
 
 ### Dependencies  
