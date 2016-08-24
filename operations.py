@@ -41,7 +41,7 @@ class EventsCrud(object):
 		deletes event entry by ID provided
 		'''
 		# query item by id given
-		deleted_item = EventsCrud.session.query(Event).filter_by(Event.id == event_id).first()
+		deleted_item = EventsCrud.session.query(Event).filter_by(id == event_id).first()
 		EventsCrud.session.delete(deleted_item)
 		EventsCrud.session.commit()
 
@@ -56,7 +56,15 @@ class EventsCrud(object):
 		return events
 
 
-	def edit_event(self):
+	def edit_event(self, event_id, name, start_date, end_date, venue):
 		'''
 		edits an event given an id
 		'''
+		# first queries all items and gets the specific by id
+		event_item = EventsCrud.session.query(Event).filter_by(id == event_id)
+		event_item.name = name
+		event_item.start_date = start_date
+		event_item.end_date = end_date
+		event_item.venue = venue
+		EventsCrud.session.update(event_item)
+		EventsCrud.session.commit()
