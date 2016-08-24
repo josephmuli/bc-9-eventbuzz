@@ -14,7 +14,9 @@ class EventsCrud(object):
 
 
 	def create_event(self):
-		
+		'''
+		creates a new event
+		'''
 		# creating a new event from Event class
 		event = Event(name, start_date, end_date, venue)
 
@@ -24,7 +26,9 @@ class EventsCrud(object):
 
 
 	def delete_event(self, event_id):
-		
+		'''
+		deletes event entry by ID provided
+		'''
 		# query item by id given
 		deleted_item = EventsCrud.session.query(Event).filter(Event.id == event_id)
 		EventsCrud.session.delete(deleted_item='evaluate')
@@ -32,6 +36,8 @@ class EventsCrud(object):
 
 
 	def list_events(self):
-
+		'''
+		returns all event entries 
+		'''
 		events = EventsCrud.session.query.all()
 		return events
