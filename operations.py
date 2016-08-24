@@ -23,4 +23,10 @@ class EventsCrud(object):
 		session.commit()
 
 
+	def delete_event(self, event_id):
+		# query item by id given
+		deleted_item = session.query(Event).filter(Event.id == event_id)
+		session.delete(deleted_item='evaluate')
+		session.commit()
+
 
