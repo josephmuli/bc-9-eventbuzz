@@ -23,7 +23,6 @@ class EventsCrud(object):
 		self.end_date = end_date
 		self.venue = venue
 
-	
 
 	def create_event(self, name, start_date, end_date, venue):
 		'''
@@ -51,8 +50,11 @@ class EventsCrud(object):
 		'''
 		returns all event entries 
 		'''
-		events = EventsCrud.session.query.all()
+		# query to get all data from the Event table
+		events = EventsCrud.session.query(Event).all()
+		
 		return events
+
 
 	def edit_event(self):
 		'''
