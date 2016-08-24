@@ -62,5 +62,7 @@ class EventsCrud(object):
 		'''
 		# first queries all items and gets the specific by id
 		event_item = EventsCrud.session.query(Event).filter_by(id == event_id)
+		# refer dict key
 		event_item['event'] = kwargs['events']
+		# commit changes to db
 		event_item.EventsCrud.session.commit()
