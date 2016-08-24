@@ -1,20 +1,23 @@
+import os
+
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
+from sqlalchemy import Table, Column, Integer, String, MetaData, DateTime
 
 
 
 # create a connection to database ebuzz, echo relieves all logging
-engine = create_engine('sqlite://ebuzz.sqlite', echo = False)
-
-# create new session object for queries
-Session = sessionmaker(bind=engine)
-Session.configure(bind=engine)
-session = Session()
+engine = create_engine('sqlite:///ebuzz.sqlite', echo = False)
 
 Base = declarative_base()
 
-Base.metadata.create_all(engine)
+Session = sessionmaker()
+Session.configure(bind=engine)
+session = Session()
+
+
+
 
 
 class Event(Base):
@@ -36,3 +39,7 @@ class Event(Base):
 
 	def __repr__(self):
 		return "<Event(name='%s', start_date='%s', end_date='%s', venue='%s')>"%(self.name, self.start_date, self.end_date, self.venue)
+
+
+
+Base.metadata.create_all(engine)
