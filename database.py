@@ -2,9 +2,9 @@ import os
 
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm import sessionmaker, relationship
 from sqlalchemy import Table, Column, Integer, String, MetaData, DateTime
-
+from sqlalchemy import ForeignKey
 
 
 # create a connection to database ebuzz, echo relieves all logging
@@ -39,7 +39,7 @@ class Ticket(Base):
 	event_id = Column(String, ForeignKey('events.id'))
 	
 	# defines relationship between models
-	ticket_id = relationship("Event", backref('ticket'))
+	ticket_id = relationship("Event")
 
 
 

@@ -24,17 +24,21 @@ class EventsCrud(object):
 		self.venue = venue
 
 
-	def create_event(self, name, start_date, end_date, venue):
+	def create_event(self):
 		'''
 		creates a new event instance
 		'''
 		# creating a new event from Event class
-		event = Event(name, start_date, end_date, venue)
+		event = Event(self.name, self.start_date, self.end_date, self.venue)
 
-		# add event object to session for db commit
-		EventsCrud.session.add(event)
-		EventsCrud.session.commit()
-
+		try:
+			# add event object to session for db commit
+			
+			EventsCrud.session.add(event)
+			EventsCrud.session.commit()
+			return "Event created"
+		except:
+			return "Error in creating event"
 
 	def delete_event(self, event_id):
 		'''
@@ -75,4 +79,3 @@ class EventsCrud(object):
 		event_tickets = EventsCrud.session.query(Ticket).filter_by(id == event_id)
 
 		return event_tickets
-
