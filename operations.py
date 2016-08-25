@@ -1,6 +1,6 @@
 import os
 
-from database import Event, engine
+from database import Event, Ticket, engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
@@ -66,3 +66,13 @@ class EventsCrud(object):
 		event_item['event'] = kwargs['events']
 		# commit changes to db
 		event_item.EventsCrud.session.commit()
+
+
+	def event_view(self, event_id):
+		'''
+		returns all ticket entries for specified event id
+		'''
+		event_tickets = EventsCrud.session.query(Ticket).filter_by(id == event_id)
+
+		return event_tickets
+
