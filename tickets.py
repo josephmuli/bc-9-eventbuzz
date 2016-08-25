@@ -65,10 +65,26 @@ class MyInteractive (cmd.Cmd):
     def do_create(self, arg):
         """Usage: create <name> <start_date> <end_date> <venue>"""
 
-        event  =  EventsCrud(arg['<name>'], arg['<start_date>'], arg['<end_date>'], arg['<venue>'])
+        event  =  EventsCrud()
     
-        print(event.create_event())
+        print(event.create_event(arg))
 
+    @docopt_cmd
+    def do_list(self, arg):
+        """Usage: list """
+
+        event  =  EventsCrud()
+        event.list_events()
+    
+        print(event.list_events())
+
+    @docopt_cmd
+    def do_delete(self, event_id):
+        """Usage: delete <event_id> """
+
+        event  =  EventsCrud()
+        event.delete_event(event_id)
+    
 
     def do_quit(self, arg):
         """Quits out of Interactive Mode."""
