@@ -1,4 +1,5 @@
 import os
+from datetime import datetime
 
 from database import Event, Ticket, engine
 from sqlalchemy.ext.declarative import declarative_base
@@ -17,28 +18,35 @@ class EventsCrud(object):
 	Session.configure(bind=engine)
 	session = Session()
 
-	def __init__(self, name, start_date, end_date, venue):
-		self.name = name
+	def __init__(self):
+		"""self.name = name
 		self.start_date = start_date
 		self.end_date = end_date
-		self.venue = venue
+		self.venue = venue"""
+		pass
 
 
-	def create_event(self):
+	def create_event(self, arg):
 		'''
 		creates a new event instance
 		'''
+		# datetime.datetime.strptime('2012-05-12', '%Y-%m-%d')
 		# creating a new event from Event class
-		event = Event(self.name, self.start_date, self.end_date, self.venue)
+		event_name = arg['<name>']
+		start_date = datetime.strptime(arg['<start_date>'], "%d-%m-%Y" )
+		end_date = datetime.strptime(arg['<end_date>'], "%d-%m-%Y" )
+		venue = arg['<venue>']
+		event = Event(name=event_name, start_date=start_date, end_date=end_date, venue=venue)
 
 		try:
 			# add event object to session for db commit
-			
+
 			EventsCrud.session.add(event)
 			EventsCrud.session.commit()
 			return "Event created"
-		except:
-			return "Error in creating event"
+		except Exception as e:
+			print e
+			raise e
 
 	def delete_event(self, event_id):
 		'''
@@ -54,6 +62,7 @@ class EventsCrud(object):
 		'''
 		returns all event entries 
 		'''
+
 		# query to get all data from the Event table
 		events = EventsCrud.session.query(Event).all()
 		
