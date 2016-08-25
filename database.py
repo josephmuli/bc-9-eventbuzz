@@ -19,7 +19,6 @@ session = Session()
 
 
 
-
 class Event(Base):
 	__tablename__ = 'events'
 
@@ -37,9 +36,20 @@ class Event(Base):
 		self.venue = venue
 
 
-	def __repr__(self):
-		return "<Event(name='%s', start_date='%s', end_date='%s', venue='%s')>"%(self.name, self.start_date, self.end_date, self.venue)
 
+class Ticket(Base):
+	__tablename__ = 'ticket'
+	id = Column(Integer, primary_key=True)
+	type = Column(String)
+	event_id = Column(Integer, ForeignKey('events.id'))
+	
+
+	ticket_id = relationship("Event", backref('ticket', order_by=id))
+
+
+	def __init__(self, type, event_id):
+		self.type = type
+		self.event_id = event_id
 
 
 Base.metadata.create_all(engine)
