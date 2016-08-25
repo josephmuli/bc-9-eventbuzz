@@ -1,5 +1,5 @@
 import os
-
+import datetime
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, relationship
@@ -21,31 +21,27 @@ class Event(Base):
 
 	id = Column(Integer, primary_key=True)
 	name = Column(String)
-	start_date = Column(DateTime)
-	end_date = Column(DateTime)
+	start_date = Column(DateTime, default=datetime.datetime.now)
+	end_date = Column(DateTime, default=datetime.datetime.now)
 	venue = Column(String)
 
 
-	def __init__(self, name, start_date, end_date, venue):
-		self.name = name
-		self.start_date = start_date
-		self.end_date = end_date
-		self.venue = venue
 
 class Ticket(Base):
 	__tablename__ = 'ticket'
 	id = Column(Integer, primary_key=True)
 	type = Column(String)
-	event_id = Column(String, ForeignKey('events.id'))
+	event_name = Column(String, ForeignKey('events.name'))
 	
 	# defines relationship between models
-	ticket_id = relationship("Event")
+	ticket_id = relationship(Event)
 
 
-
-	def __init__(self, type, event_id):
+	def __init__(self, type=type, event_name=event_name):
 		self.type = type
-		self.event_id = event_id
+		self.event_name = event_name
+
+
 
 
 Base.metadata.create_all(engine)
