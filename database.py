@@ -16,9 +16,6 @@ Session = sessionmaker()
 Session.configure(bind=engine)
 session = Session()
 
-
-
-
 class Event(Base):
 	__tablename__ = 'events'
 
@@ -35,16 +32,15 @@ class Event(Base):
 		self.end_date = end_date
 		self.venue = venue
 
-
-
 class Ticket(Base):
 	__tablename__ = 'ticket'
 	id = Column(Integer, primary_key=True)
 	type = Column(String)
-	event_id = Column(Integer, ForeignKey('events.id'))
+	event_id = Column(String, ForeignKey('events.id'))
 	
 	# defines relationship between models
-	ticket_id = relationship("Event", backref('ticket', order_by=id))
+	ticket_id = relationship("Event", backref('ticket'))
+
 
 
 	def __init__(self, type, event_id):
