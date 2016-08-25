@@ -21,6 +21,7 @@ import sys
 import cmd
 from docopt import docopt, DocoptExit
 from operations import EventsCrud
+from ticket_crud import TicketsCrud
 
 
 def docopt_cmd(func):
@@ -59,15 +60,17 @@ class MyInteractive (cmd.Cmd):
         + ' (type help for a list of commands.)'
     prompt = '(event_buzz) '
     file = None
-
+    global event_id
 
     @docopt_cmd
     def do_create(self, arg):
         """Usage: create <name> <start_date> <end_date> <venue>"""
 
         event  =  EventsCrud()
+        # event_id = arg['<event_id>']
     
         print(event.create_event(arg))
+
 
     @docopt_cmd
     def do_list(self, arg):
@@ -78,13 +81,26 @@ class MyInteractive (cmd.Cmd):
     
         print(event.list_events())
 
-    @docopt_cmd
-    def do_delete(self, event_id):
-        """Usage: delete <event_id> """
 
-        event  =  EventsCrud()
-        event.delete_event(event_id)
-    
+    @docopt_cmd
+    def do_generate(self, arg):
+        """Usage: generate <email> """
+
+        ticket_type = raw_input("Enter A for VVIP, B for VIP and C for regular: ")
+        if ticket_type == 'A':
+            ticket_type = 'VVIP'
+        elif ticket_type == 'B':
+            ticket_type = 'VIP'
+        elif ticket_type == 'C':
+            ticket_type = 'Regular'
+
+        ticket_name = raw_input("Enter the Event you're signing up for: ")
+        
+        ticket = TicketsCrud()
+        ticko = ticket.create_ticket(ticket_type, ticket_name)
+
+        email = raw_input("Please enter your email address")
+
 
     def do_quit(self, arg):
         """Quits out of Interactive Mode."""
