@@ -43,7 +43,7 @@ class Ticket(Base):
 	type = Column(String)
 	event_id = Column(Integer, ForeignKey('events.id'))
 	
-
+	# defines relationship between models
 	ticket_id = relationship("Event", backref('ticket', order_by=id))
 
 
