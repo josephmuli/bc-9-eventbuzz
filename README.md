@@ -17,8 +17,8 @@
 ### Dependencies  
 #### Backend Dependencies:
 1. [Docopt](http://docopt.org/) - This is a Pythonic package that allows creating the command-line interface for eventbuzz.  
-2. [Firebase](https://www.firebase.com) - This is the nosql database that eventbuzz uses to store event data.  
-3. [python-firebase 1.2](https://pypi.python.org/pypi/python-firebase/1.2) - This is a pythonic package that handles request data from Firebase.  
+2. [SQlite](https://www.sqlite.org/) - This is a light-weight relational database that eventbuzz uses to store event data.  
+3. [SQL Alchemy](http://www.sqlalchemy.org/) - This is a python SQL toolkit and Object relational mapper.  
 4. [smtplib](https://docs.python.org/2/library/smtplib.html) - This is a python library that handles sending of emails via python modules.  
 5. [python-crontab](https://pypi.python.org/pypi/python-crontab/) - This is a python library that enables scheduling of various tasks.  
 
