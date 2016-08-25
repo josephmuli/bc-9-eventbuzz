@@ -22,6 +22,7 @@ import cmd
 from docopt import docopt, DocoptExit
 from operations import EventsCrud
 from ticket_crud import TicketsCrud
+import requests
 
 
 def docopt_cmd(func):
@@ -81,6 +82,13 @@ class MyInteractive (cmd.Cmd):
     
         print(event.list_events())
 
+    @docopt_cmd
+    def do_delete(self, event_id):
+        """Usage: delete <event_id> """
+
+        event  =  EventsCrud()
+        event.delete_event(event_id)
+
 
     @docopt_cmd
     def do_generate(self, arg):
@@ -94,12 +102,20 @@ class MyInteractive (cmd.Cmd):
         elif ticket_type == 'C':
             ticket_type = 'Regular'
 
-        ticket_name = raw_input("Enter the Event you're signing up for: ")
+        event_name = raw_input("Enter the Event you're signing up for: ")
         
         ticket = TicketsCrud()
-        ticko = ticket.create_ticket(ticket_type, ticket_name)
+        ticko = ticket.create_ticket(ticket_type, event_name)
 
-        email = raw_input("Please enter your email address")
+        # email = raw_input("Please enter your email address: ")
+        print('Your ticket is being processed, please check your email')
+        return requests.post(
+            "https://api.mailgun.net/v3/samples.mailgun.org/messages",
+            auth=("api", "key-6649005511b2ba6f97d95f7120732e0d"),
+            data={"from": "Excited User <excited@samples.mailgun.org>",
+                    "to": ["email"],
+                    "subject": "EventBuzz Ticket Information",
+                    "text": "Hey There! here's your ticket info "})
 
 
     def do_quit(self, arg):
