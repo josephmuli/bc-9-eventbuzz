@@ -6,8 +6,6 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
 
-
-
 class TicketsCrud(object):
 
 	engine = create_engine('sqlite:///ebuzz.sqlite', echo = False)
@@ -18,13 +16,17 @@ class TicketsCrud(object):
 	session = Session()
 
 
-	def __init__(self, type, event_id):
-		self.type = type
-		self.event_id = event_id
+	def __init__(self):
+		pass
 
 
-	def create_ticket(self, type, event_id):
-		ticko = Ticket(type, event_id)
+	def create_ticket(self, type, event_name):
+
+		ticko = Ticket(type, event_name)
 		TicketsCrud.session.add(ticko)
 		TicketsCrud.session.commit()
 		return ticko
+
+
+
+

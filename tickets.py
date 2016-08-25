@@ -106,8 +106,8 @@ class MyInteractive (cmd.Cmd):
         
         ticket = TicketsCrud()
         ticko = ticket.create_ticket(ticket_type, event_name)
+        ticket_id = ticko.id
 
-        # email = raw_input("Please enter your email address: ")
         print('Your ticket is being processed, please check your email')
         return requests.post(
             "https://api.mailgun.net/v3/samples.mailgun.org/messages",
@@ -115,7 +115,7 @@ class MyInteractive (cmd.Cmd):
             data={"from": "Excited User <excited@samples.mailgun.org>",
                     "to": ["email"],
                     "subject": "EventBuzz Ticket Information",
-                    "text": "Hey There! here's your ticket info "})
+                    "text": "Hey There! here's your ticket info:  Ticket id:%s and Event registered: %s " %(ticket_id, event_name)})
 
 
     def do_quit(self, arg):
