@@ -1,2 +1,4 @@
 ebuzz
 *.pyc
+ebuzz.db
+.requirements.txt.swp
