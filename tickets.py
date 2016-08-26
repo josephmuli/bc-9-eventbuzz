@@ -153,7 +153,7 @@ class MyInteractive (cmd.Cmd):
         return requests.post(
             "https://api.mailgun.net/v3/samples.mailgun.org/messages",
             auth=("api", "key-6649005511b2ba6f97d95f7120732e0d"),
-            data={"from": "Excited User <excited@samples.mailgun.org>",
+            data={"from": "Admin <excited@samples.mailgun.org>",
                     "to": ["email"],
                     "subject": "EventBuzz Ticket Information",
                     "text": "Hey There! here's your ticket info:  Ticket id:%s and Event registered: %s " %(ticket_id, event_name)})
