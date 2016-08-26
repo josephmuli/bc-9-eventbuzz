@@ -28,5 +28,24 @@ class TicketsCrud(object):
 		return ticko
 
 
+	@staticmethod
+	def ticket_invalidate(t_id):
+		'''
+		invalidates a ticket instance
+		'''
+		ticko = TicketsCrud.session.query(Ticket).get(t_id)
+
+
+		try:
+			ticko.is_valid = False
+
+			TicketsCrud.session.add(ticko)
+			TicketsCrud.session.commit()
+			return "Ticket has been invalidated"
+		except Exception as e:
+			print e
+			raise e
+
+
 
 

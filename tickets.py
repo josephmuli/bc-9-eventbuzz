@@ -9,7 +9,7 @@ Usage:
     tickets list
     tickets view <event_id>
     tickets generate <email>
-    tickets invalidate <ticket_id>
+    tickets invalidate <t_id>
     tickets (-i | --interactive)
     tickets (-h | --help | --version)
 Options:
@@ -82,12 +82,22 @@ class MyInteractive (cmd.Cmd):
     
         print(event.list_events())
 
+
     @docopt_cmd
     def do_delete(self, event_id):
         """Usage: delete <event_id> """
 
         event  =  EventsCrud()
         event.delete_event(event_id)
+
+    @docopt_cmd
+    def do_invalidate(arg):
+        """Usage: invalidate <t_id> """
+
+        ticko = Ticket()
+        ticko.ticket_invalidate(arg['<t_id>'])
+
+        return 'Ticket is now invalid!'
 
 
     @docopt_cmd
