@@ -55,6 +55,7 @@ class EventsCrud(object):
 		return 'Entry has been deleted'
 
 
+
 	def list_events(self):
 		'''
 		returns all event entries 

@@ -1,11 +1,17 @@
 import os
 import smtplib
+import requests
 
 from email.MIMEMultipart import MIMEMultipart
 from email.MIMEBase import MIMEBase
 from email.MIMETEXT import MIMETEXT
 from email import Encoders
 
+
+'''
+USING SMTP
+
+'''
 
 EMAIL_HOST_SERVER = smtp.SMTP('smtp.gmail.com', 587)
 EMAIL_USE_TLS = True
