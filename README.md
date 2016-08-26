@@ -55,3 +55,4 @@
 
 * Cron jobs to be assigned email addresses  
 * User profiles for user identification  
+* Event edit for event detail change  
