@@ -41,7 +41,7 @@
 * Install the app's dependencies. I advice using a [virtual environment](http://docs.python-guide.org/en/latest/dev/virtualenvs/)  
 	* ``` pip install -r requirements.txt ```  
 * Run the app  
-	* ` python filename.py function_name argument(s) `  
+	* ` python tickets.py -i ` for interactive mode  
 
 ### Tests  
 * Tests have been written using the python [unittest](https://docs.python.org/2/library/unittest.html) framework.  
