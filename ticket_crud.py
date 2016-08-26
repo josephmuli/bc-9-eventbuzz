@@ -33,7 +33,7 @@ class TicketsCrud(object):
 		'''
 		invalidates a ticket instance
 		'''
-		ticko = TicketsCrud.session.query(Ticket).get(t_id)
+		ticko = TicketsCrud.session.query(Ticket).filter_by(id=t_id)
 
 
 		try:
@@ -45,7 +45,3 @@ class TicketsCrud(object):
 		except Exception as e:
 			print e
 			raise e
-
-
-
-
