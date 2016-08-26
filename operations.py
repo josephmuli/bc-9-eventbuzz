@@ -19,10 +19,6 @@ class EventsCrud(object):
 	session = Session()
 
 	def __init__(self):
-		"""self.name = name
-		self.start_date = start_date
-		self.end_date = end_date
-		self.venue = venue"""
 		pass
 
 
@@ -30,7 +26,6 @@ class EventsCrud(object):
 		'''
 		creates a new event instance
 		'''
-		# datetime.datetime.strptime('2012-05-12', '%Y-%m-%d')
 		# creating a new event from Event class
 		event_name = arg['<name>']
 		start_date = datetime.strptime(arg['<start_date>'], "%d-%m-%Y" )
@@ -48,14 +43,16 @@ class EventsCrud(object):
 			print e
 			raise e
 
-	def delete_event(self, event_id):
+	@staticmethod
+	def delete_event(event_id):
 		'''
 		deletes event entry by ID provided
 		'''
 		# query item by id given
-		deleted_item = EventsCrud.session.query(Event).filter_by(id == event_id).first()
-		EventsCrud.session.delete(deleted_item)
+		deleted_item = EventsCrud.session.query(Event).filter_by(id=event_id).delete()
+		# EventsCrud.session.delete(deleted_item)
 		EventsCrud.session.commit()
+		return 'Entry has been deleted'
 
 
 	def list_events(self):
@@ -65,8 +62,17 @@ class EventsCrud(object):
 
 		# query to get all data from the Event table
 		events = EventsCrud.session.query(Event).all()
-		
-		return events
+		event_data = []
+		for item in events:
+			event_data.append([item.name, item.start_date, item.end_date, item.venue])
+
+		for event in events:
+			print("{} {} {} {} {}".format('id'.ljust(15), 'name'.ljust(10), 'start_date'.ljust(20), 'end_date'.ljust(20), 'venue'.ljust(30)))
+
+		for event_item in event_data:
+			print("{} {} {} {}".format(str(event_item[1]).ljust(15), event_item[0].ljust(10), str(event_item[1]).ljust(20), str(event_item[2]).ljust(20), event_item[3].ljust(30)))
+		print('-------------------------------------------------------------------------------------------------------------------------------------')
+
 
 
 	def edit_event(self, event_id, **kwargs):
@@ -79,6 +85,8 @@ class EventsCrud(object):
 		event_item['event'] = kwargs['events']
 		# commit changes to db
 		event_item.EventsCrud.session.commit()
+
+		return event_item
 
 
 	def event_view(self, event_id):
