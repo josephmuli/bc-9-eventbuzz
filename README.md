@@ -9,7 +9,6 @@
  * Invalidate a ticket 
  * View an event's tickets  
  * Delete an event  
- * Edit a specific event's details  
  * List out all events  
  * Send email updates on an event's schedule  
 
