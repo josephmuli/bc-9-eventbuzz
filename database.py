@@ -3,7 +3,7 @@ import datetime
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, relationship
-from sqlalchemy import Table, Column, Integer, String, MetaData, DateTime
+from sqlalchemy import Table, Column, Integer, String, MetaData, DateTime, Boolean
 from sqlalchemy import ForeignKey
 
 
@@ -32,6 +32,7 @@ class Ticket(Base):
 	id = Column(Integer, primary_key=True)
 	type = Column(String)
 	event_name = Column(String, ForeignKey('events.name'))
+	is_valid = Column(Boolean, unique=False, default=True)
 	
 	# defines relationship between models
 	ticket_id = relationship(Event)
