@@ -21,6 +21,7 @@
 3. [SQL Alchemy](http://www.sqlalchemy.org/) - This is a python SQL toolkit and Object relational mapper.  
 4. [smtplib](https://docs.python.org/2/library/smtplib.html) - This is a python library that handles sending of emails via python modules.  
 5. [python-crontab](https://pypi.python.org/pypi/python-crontab/) - This is a python library that enables scheduling of various tasks.  
+6. [mailgun](https://mailgun.com/) - Mailgun offers an API for sending emails. 
 
 ### Installation and setup:  
 
