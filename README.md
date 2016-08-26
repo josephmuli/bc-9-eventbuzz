@@ -49,3 +49,8 @@
 * issue the following command on terminal.  
 	* ` python buzz_tests.py `  
 * If the tests are successful, they will not display any error or failure.  
+
+## To-Do:  
+
+* Cron jobs to be assigned email addresses  
+* User profiles for user identification  
