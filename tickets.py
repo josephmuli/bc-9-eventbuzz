@@ -121,10 +121,10 @@ class MyInteractive (cmd.Cmd):
 
 
     @docopt_cmd
-    def do_invalidate(arg):
+    def do_invalidate(self, arg):
         """Usage: invalidate <t_id> """
 
-        ticko = Ticket()
+        ticko = TicketsCrud()
         ticko.ticket_invalidate(arg['<t_id>'])
 
         return 'Ticket is now invalid!'
